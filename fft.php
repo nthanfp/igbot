@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 set_time_limit(0);
 // error_reporting(1);
 require('func.php');
