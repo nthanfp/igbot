@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 set_time_limit(0);
-// error_reporting(1);
+date_default_timezone_set('Asia/Jakarta');
 require('func.php');
 require('ass.php');
 echo ">> Input your instagram username : ";
@@ -94,12 +94,13 @@ if($ext->status <> 'ok') {
             $c = (isset($req->next_max_id)) ? $req->next_max_id : 0;
         } while(count($listids) <= $limit);
         for($i = 0; $i < count($listids); $i++):
-        //user details
+        	//user details
+        	$date = date("Y-m-d H:i:s");
             $getx = proccess(1, $useragent, 'users/' . $listids[$i] . '/info/', $cookie);
             $getx = json_decode($getx[1]);
             $priv = $getx->user->is_private;
             if($priv == 1):
-                echo "@" . $req->users[$i]->username . " User Private, Skip\n";
+                echo "[ ".$date." ][ @" . $req->users[$i]->username . " User Private, Skip ]\n";
             else:
                 //follow user
                 $follow = proccess(1, $useragent, 'friendships/create/' . $listids[$i] . '/', $cookie, hook('{"user_id":"' . $listids[$i] . '"}'));
@@ -134,7 +135,7 @@ if($ext->status <> 'ok') {
                 else:
                     $comment_status = 'Failed Comment';
                 endif;
-                echo $follow_status." @".$req->users[$i]->username." | ".$like_status." ".$mediaId." | ".$commentAcak."\n";
+                echo "[ ".$date." ][ ".$follow_status." @".$req->users[$i]->username." ][ ".$like_status." ".$mediaId." ][ ".$commentAcak." ]\n";
                 sleep($delay);
             endif;
         endfor;
