@@ -99,7 +99,7 @@ if($ext->status <> 'ok') {
             $getx = json_decode($getx[1]);
             $priv = $getx->user->is_private;
             if($priv == 1):
-                echo "@" . $req->users[$i]->username . "User Private, Skipp\n";
+                echo "@" . $req->users[$i]->username . " User Private, Skip\n";
             else:
                 //follow user
                 $follow = proccess(1, $useragent, 'friendships/create/' . $listids[$i] . '/', $cookie, hook('{"user_id":"' . $listids[$i] . '"}'));
@@ -114,7 +114,7 @@ if($ext->status <> 'ok') {
                 $getmedia = json_decode($getmedia[1], true);
                 $mediaId  = $getmedia['items'][0]['id'];
                 //like media
-                $like     = proccess(1, $useragent, 'media/' . $mediaId . '/like/', $cookie, hook('{"media_id":"' . $mediaId . '"}'), array(
+                $like     = proccess(1, $useragent, 'media/' . $mediaId . '/like/', $cookie, hook('{"media_id":"'.$mediaId.'"}'), array(
                     'Accept-Language: id-ID, en-US',
                     'X-IG-Connection-Type: WIFI'
                 ));
@@ -125,22 +125,16 @@ if($ext->status <> 'ok') {
                     $like_status = 'Failed Like';
                 endif;
                 //comment media
-                $listKomentar = array(
-                    "Follow Back ya kak 😘",
-                    "Follow aku ya kak 😁",
-                    "Bagus banget kak fotonya 😍,Follow back yaaa",
-                    "Caption on point banget!!, Follow back ya 😊",
-                    "Follback dong kak😄"
-                );
+                $listKomentar = array("Like back dan Follow back ya🙏", "follback dan like back🙏", "follback ya👌", "salken", " follback dan like back ya👍", "salam kenal follback dan likeback ya kak👍", "orang mana? follback dan likeback ya👍", "salken ya", " boleh minta follback dan likeback?", "follback yo", "follbackk", "followback ya", "udah aku follow dan like bisa minta follback dan likeback gak hehe", "follback dan likeback yo kak udah difollow kok", "follback dan likeback kak sudah aku follow dan like", "bisa minta follow back kak hehe?", "followback yo 😀", "salken", " follback ya 🙂 ", "salken", " follback aku yah", "salken", " btw follback ya", "salken", " follback juga yah hehe", "salamkenal", " follback yah hehe", "bisa follback ?", "follback yow", "follback yapp", "Follback hihihihi", "follbackk saya ya 🙂", "Orang mana kak", " like back dan Follback ya", "Salam kenal kak hehe likeback dan follback ya", "Salkus ya kak like back dan follback ya", "Mari berteman kak", "like back dan follback ya", "Orang mana kak", " Salam kenal ya tod ", " likeback dan Follback yaa", "Orang mana kak?", " likeback dan Follback dong", "Namanya siapa", " Salam kenal ya", " like back dan follback ya", "Saling follback ya kak", " makasih", "Orang mana kak", " likeback dan Follbackdong hehehe", "halo  kak salken ya", "", " like back dan Follback ya", "Mari berteman ya kak saling dan follback hehe", "Kenalan dong kak heheh likeback dan follback ya", "Likeback dan follback hihi salam kenal ya", "Hallo kak salam kenal ya hehe likeback dan follback juga ya");
                 $commentAcak  = $listKomentar[rand(0, count($listKomentar) - 1)];
-                $comment      = proccess(1, $useragent, 'media/' . $mediaId . '/comment/', $cookie, hook('{"comment_text":"' . $commentAcak . '"}'));
+                $comment      = proccess(1, $useragent, 'media/'.$mediaId.'/comment/', $cookie, hook('{"comment_text":"'.$commentAcak.'"}'));
                 $comment      = json_decode($comment[1]);
                 if($comment->status == 'ok'):
                     $comment_status = 'Comment';
                 else:
                     $comment_status = 'Failed Comment';
                 endif;
-                echo $follow_status . " " . $req->users[$i]->username . " | " . $like_status . " " . $mediaId . " | " . $commentAcak . "\n";
+                echo $follow_status." @".$req->users[$i]->username." | ".$like_status." ".$mediaId." | ".$commentAcak."\n";
                 sleep($delay);
             endif;
         endfor;
