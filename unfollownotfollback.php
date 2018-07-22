@@ -3,6 +3,8 @@ error_reporting(0);
 set_time_limit(0);
 require('func.php');
 require('ass.php');
+echo banner1();
+echo banner2();
 echo ">> Input your instagram username : ";
 $userig    = trim(fgets(STDIN, 1024));
 echo ">> Input your instagram password : ";

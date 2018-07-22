@@ -22,4 +22,25 @@ function req($url, $data)
     
     return $response;
 }
+
+function version()
+{
+    return "Ver 1";
+}
+
+function banner1()
+{
+    $banner  = "==== Instagram Tools ".version()." ====\n";
+
+    return $banner;
+
+}
+
+function banner2()
+{
+    $banner  = "=========== Code by ===========\n";
+    $banner2 = "====== NTHANFP | AXEC0DE ======\n\n";
+
+    return $banner."".$banner2;
+}
 ?>

@@ -1,7 +1,6 @@
 <?php
 error_reporting(0);
 set_time_limit(0);
-// error_reporting(1);
 require('func.php');
 require('ass.php');
 echo banner1();
@@ -45,25 +44,31 @@ if($ext->status <> 'ok') {
     );
     $addig  = req('https://bot.nthanfp.me/action/api().php', $data);
     //start
-    $iyh = true;
+    echo ">> Input your target : ";
+    $target    = trim(fgets(STDIN, 1024));
+    $idtarget  = getuid($target);
+
+    $next_id = 0;
+    $hasnext = false;
+    $i       = 0;
     do {
-        $req = proccess(1, $useragent, 'feed/timeline/', $cookie, null, array('Accept-Language: id-ID, en-US', 'X-IG-Connection-Type: WIFI'));
-        $req = json_decode($req[1]);
-        $jumlahtl = count($req->items);
-        for($i=0;$i<$jumlahtl;$i++):
-            if(!$req->items[$i]->has_liked):
-                $like = proccess(1, $useragent, 'media/'.$req->items[$i]->id.'/like/', $cookie, hook('{"media_id":"'.$req->items[$i]->id.'"}'), array('Accept-Language: id-ID, en-US', 'X-IG-Connection-Type: WIFI'));
-                $like  = json_decode($like[1]);
-                if($like->status == 'ok'):
-                    $like_status = 'Liked';
-                else:
-                    $like_status = 'Failed Like';
-                endif;
-                echo $like_status." ".$req->items[$i]->id."\n";
-                flush();
-            endif;
-        endfor;
-        sleep(60);
-    } while($iyh == 'false');
+    	$i++;
+    	$parameters = '?max_id='.$next_id;
+    	$dumpmedia  = proccess(1, $useragent, 'feed/user/'.$idtarget.'/'.$parameters.'', $cookie);
+    	$dumpmedia  = json_decode($dumpmedia[1], true);
+    	$items      = $dumpmedia['items'];
+
+    	if($dumpmedia['more_available'] == true){
+    		 $next_id = $dumpmedia['next_max_id'];
+    		 $hasnext = true;
+    		 echo "".$i.". Load more photos! Skipping... ".$next_id."\n";
+    	} else {
+    		foreach($items as $item){
+    			echo $item['code']."\n";
+    		}
+    	}
+
+    } while($hasnext == true);
+
 }
 ?>
