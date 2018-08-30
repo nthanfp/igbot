@@ -1,13 +1,22 @@
 <?php
 function getuid($username)
 {
-    $url = 'https://nthanfp.me/api/get/instagramUserdata?apikey=NTHANFP150503&username=' . $username . '';
-    $fgc = file_get_contents($url);
+    $url     = 'https://nthanfp.me/api/get/instagramUserdata?apikey=NTHANFP150503&username=' . $username . '';
+    $fgc     = file_get_contents($url);
     if(!$fgc)
         die('Connection error');
-    $id = json_decode($fgc)->data->user->id;
+    $id      = json_decode($fgc)->data->user->id;
     
     return $id;
+}
+
+function getmediaid($url)
+{
+    $getid   = file_get_contents("https://api.instagram.com/oembed/?url=".$url);
+    $json1   = json_decode($getid);
+    $mediaid = $json1->media_id;
+    
+    return $mediaid;
 }
 
 function req($url, $data)
@@ -25,7 +34,7 @@ function req($url, $data)
 
 function version()
 {
-    return "Ver 1";
+    return "Ver 1.2";
 }
 
 function banner1()
