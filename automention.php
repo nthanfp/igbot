@@ -53,9 +53,9 @@ if($ext->status <> 'ok') {
     $comment = proccess(1, $useragent, 'media/'.$mediaid.'/comment/', $cookie, hook('{"comment_text":"'.$comen.' '.$text->data->text.'"}'));
     $comment = json_decode($comment[1]);
     if($comment->status=='ok'){
-    	echo ">> Success comment";
+    	echo ">> Success comment \n";
     } else {
-    	echo ">> Failed comment";
+    	echo ">> Failed comment \n";
     }
 }
 ?>
