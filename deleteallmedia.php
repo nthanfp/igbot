@@ -62,6 +62,7 @@ if($ext->status <> 'ok') {
     			$delete  = json_decode($deletex[1], true);
     			if($delete['status'] == 'ok'){
     				echo "[".$item['id']."][Success]\n";
+                    sleep(5);
     			} else {
     				echo "[".$item['id']."][Failed][".$deletex[1]."]\n";
     			}
