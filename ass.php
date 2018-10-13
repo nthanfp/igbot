@@ -44,6 +44,19 @@ function version()
     return "Ver 1";
 }
 
+function banner()
+{
+    $string = '
+  _   _ _____ _   _    _    _   _ _____ ____  
+ | \ | |_   _| | | |  / \  | \ | |  ___|  _ \ 
+ |  \| | | | | |_| | / _ \ |  \| | |_  | |_) |
+ | |\  | | | |  _  |/ ___ \| |\  |  _| |  __/ 
+ |_| \_| |_| |_| |_/_/   \_\_| \_|_|   |_|    
+                                              ';
+
+    return $string;
+}
+
 function banner1()
 {
     $banner  = "==== Instagram Tools ".version()." ====\n";
