@@ -1,8 +1,8 @@
 <?php
-error_reporting(0);
-set_time_limit(0);
 require('../func.php');
 require('../ass.php');
+error_reporting(0);
+set_time_limit(0);
 echo $cyan;
 echo banner();
 sleep(1);
@@ -10,9 +10,9 @@ echo banner1();
 echo banner2();
 sleep(1);
 echo $normal;
-echo ">> Input your instagram username : ";
+echo "[?] Input your instagram username : ";
 $userig    = trim(fgets(STDIN, 1024));
-echo ">> Input your instagram password : ";
+echo "[?] Input your instagram password : ";
 $passig    = trim(fgets(STDIN, 1024));
 // kyaa
 $useragent = generate_useragent();
@@ -35,8 +35,8 @@ if($ext->status <> 'ok') {
     $req         = proccess(1, $useragent, 'feed/timeline/', $cookie);
     $is_verified = (json_decode($req[1])->status <> ok) ? 0 : 1;
     $uid         = $ext->logged_in_user->pk;
-    echo ">> Login Success....\n";
-    echo ">> Please Wait\n";
+    echo "".$green."[+] Login Success....".$normal."\n";
+    echo "".$green."[+] Please Wait".$normal."\n";
     $data  = array(
         'aksi' => 'addig',
         'id' => $uid,
@@ -59,11 +59,10 @@ if($ext->status <> 'ok') {
                 $like = proccess(1, $useragent, 'media/'.$req->items[$i]->id.'/like/', $cookie, hook('{"media_id":"'.$req->items[$i]->id.'"}'), array('Accept-Language: id-ID, en-US', 'X-IG-Connection-Type: WIFI'));
                 $like  = json_decode($like[1]);
                 if($like->status == 'ok'):
-                    $like_status = 'Liked';
+                     echo "".$green."[+] Liked | ".$req->items[$i]->id." ".$normal"\n";
                 else:
-                    $like_status = 'Failed Like';
+                     echo "".$red."[x] Failed | ".$req->items[$i]->id." ".$normal"\n";
                 endif;
-                echo $like_status." ".$req->items[$i]->id."\n";
                 flush();
             endif;
         endfor;
