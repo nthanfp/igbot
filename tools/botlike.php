@@ -59,9 +59,9 @@ if($ext->status <> 'ok') {
                 $like = proccess(1, $useragent, 'media/'.$req->items[$i]->id.'/like/', $cookie, hook('{"media_id":"'.$req->items[$i]->id.'"}'), array('Accept-Language: id-ID, en-US', 'X-IG-Connection-Type: WIFI'));
                 $like  = json_decode($like[1]);
                 if($like->status == 'ok'):
-                     echo "".$green."[+] Liked | ".$req->items[$i]->id." ".$normal"\n";
+                     echo "".$green."[+] Liked | ".$req->items[$i]->id." ".$normal."\n";
                 else:
-                     echo "".$red."[x] Failed | ".$req->items[$i]->id." ".$normal"\n";
+                     echo "".$red."[x] Failed | ".$req->items[$i]->id." ".$normal."\n";
                 endif;
                 flush();
             endif;
