@@ -48,32 +48,35 @@ if($ext->status <> 'ok') {
         'uplink' => 'admin'
     );
     $addig  = req('https://bot.nthanfp.me/action/api().php', $data);
+    echo "[?] Input delay : ";
+    $delay  = trim(fgets(STDIN, 1024));
     //start
-    echo "[?] Input your target : ";
-    $target    = trim(fgets(STDIN, 1024));
-    $idtarget  = getuid($target);
-
-    $next_id = 0;
-    $hasnext = false;
-    $i       = 0;
-    do {
-    	$i++;
-    	$parameters = '?max_id='.$next_id;
-    	$dumpmedia  = proccess(1, $useragent, 'feed/user/'.$idtarget.'/'.$parameters.'', $cookie);
-    	$dumpmedia  = json_decode($dumpmedia[1], true);
-    	$items      = $dumpmedia['items'];
-
-    	if($dumpmedia['more_available'] == true){
-    		 $next_id = $dumpmedia['next_max_id'];
-    		 $hasnext = true;
-    		 echo "[!] Load more photos! Skipping... ".$next_id."\n";
-    	} else {
-    		foreach($items as $item){
-    			echo $item['code']."\n";
-    		}
-    	}
-
-    } while($hasnext == true);
-
+        do{
+            $parameters = ($c>0) ? '?max_id='.$c : '';
+            $req = proccess(1, $useragent, 'friendships/'.$uid.'/following/'.$parameters, $cookie);
+            $req = json_decode($req[1]);
+            if(!$req)
+                die("Connection error");
+            for($i=0;$i<count($req->users);$i++):
+                $date         = date("Y-m-d H:i:s");
+                $status       = proccess(1, $useragent, 'friendships/show/'.$req->users[$i]->pk.'/', $cookie);
+                $statusx      = json_decode($status[1], true);
+                $gafoll       = $statusx['followed_by'];
+                $usernamenye  = $req->users[$i]->username;
+                if($gafoll==1){
+                    echo "".$blue."[x][".$i."] ".$date." | @".$usernamenye." Saling Follow".$normal."\n";
+                }else{
+                    $unfollow = proccess(1, $useragent, 'friendships/destroy/'.$req->users[$i]->pk.'/', $cookie, hook('{"user_id":"'.$req->users[$i]->pk.'"}'));
+                    $unfollow = json_decode($unfollow[1]);
+                    if($unfollow->status == 'ok'):
+                        $unfollow_status = ''.$grenn.'Success'.$normal.'';
+                    else:
+                        $unfollow_status = ''.$red.'Failed'.$normal.'';
+                    endif;    
+                    echo "[+][".$i."] ".$date." | @".$usernamenye." Tidak Saling Follow | ".$unfollow_status." Unfollow]\n";
+                }
+                sleep($delay);
+            endfor;
+        } while($c>0);
 }
 ?>
