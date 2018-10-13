@@ -9,7 +9,7 @@ echo -e "\e[1;36m
  |_| \_| |_| |_| |_/_/   \_\_| \_|_|   |_|    
                                               "
 sleep 1
-echo "==== Instagram Tools Ver ".version()." ====";
+echo "==== Instagram Tools Ver 1.2 ====";
 echo "============ Code by ============";
 echo -e "======= NTHANFP | AXEC0DE =======\e[0m";
 sleep 1
@@ -62,7 +62,7 @@ cd tools
 php firtsmedia.php
 fi
 
-if [ $bro = 5 ] || [ $bro = 5 ]
+if [ $bro = 6 ] || [ $bro = 6 ]
 then
 clear
 cd tools
