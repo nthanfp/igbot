@@ -70,14 +70,14 @@ cd tools
 php unfollownotfollback.php
 fi
 
-if [ $bro = 6 ] || [ $bro = 6 ]
+if [ $bro = 7 ] || [ $bro = 7 ]
 then
 clear
 cd tools
 php unfollowall.php
 fi
 
-if [ $bro = 0 ] || [ $bro = 00 ]
+if [ $bro = 0 ] || [ $bro = 0 ]
 then
 clear
 echo "Exit......"
