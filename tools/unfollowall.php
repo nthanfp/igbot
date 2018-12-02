@@ -70,7 +70,7 @@ if($ext->status <> 'ok') {
                 else:
                     $unfollow_status = ''.$red.'Failed'.$normal.'';
                 endif;    
-                echo "[+][".$i."] ".$date." | @".$usernamenye." Tidak Saling Follow | ".$unfollow_status." Unfollow]\n";
+                echo "[+][".$i."] ".$date." | ".$unfollow_status." Unfollow]\n";
                 sleep($delay);
             endfor;
         } while($c>0);
