@@ -66,7 +66,7 @@ if($ext->status <> 'ok') {
                 $unfollow = proccess(1, $useragent, 'friendships/destroy/'.$req->users[$i]->pk.'/', $cookie, hook('{"user_id":"'.$req->users[$i]->pk.'"}'));
                 $unfollow = json_decode($unfollow[1]);
                 if($unfollow->status == 'ok'):
-                    $unfollow_status = ''.$grenn.'Success'.$normal.'';
+                    $unfollow_status = ''.$green.'Success'.$normal.'';
                 else:
                     $unfollow_status = ''.$red.'Failed'.$normal.'';
                 endif;    
