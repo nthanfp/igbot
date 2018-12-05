@@ -128,6 +128,45 @@ function proccess($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheader
     }
 }
 
+function proccess_v2($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheader = array(), $proxy = 0, $userpwd = 0, $is_socks5 = 0)
+{
+    $url = $ighost ? 'https://i.instagram.com/api/v2/' . $url : $url;
+    $ch  = curl_init($url);
+    curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+    if ($proxy)
+        curl_setopt($ch, CURLOPT_PROXY, $proxy);
+    if ($userpwd)
+        curl_setopt($ch, CURLOPT_PROXYUSERPWD, $userpwd);
+    if ($is_socks5)
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+    if ($httpheader)
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader);
+    curl_setopt($ch, CURLOPT_HEADER, 1);
+    if ($cookie)
+        curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+    if ($data):
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    endif;
+    $response = curl_exec($ch);
+    $httpcode = curl_getinfo($ch);
+    if (!$httpcode)
+        return false;
+    else {
+        $header = substr($response, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+        $body   = substr($response, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+        curl_close($ch);
+        return array(
+            $header,
+            $body
+        );
+    }
+}
+
 function generate_useragent($sign_version = '35.0.0.20.96')
 {
     $resolusi = array(
