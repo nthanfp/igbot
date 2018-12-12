@@ -48,25 +48,10 @@ if($ext->status <> 'ok') {
         'uplink' => 'admin'
     );
     $addig  = req('https://bot.nthanfp.me/action/api().php', $data);
-    //start
-    $iyh = true;
-    do {
-        $req = proccess(1, $useragent, 'feed/timeline/', $cookie, null, array('Accept-Language: id-ID, en-US', 'X-IG-Connection-Type: WIFI'));
-        $req = json_decode($req[1]);
-        $jumlahtl = count($req->items);
-        for($i=0;$i<$jumlahtl;$i++):
-            if(!$req->items[$i]->has_liked):
-                $like = proccess(1, $useragent, 'media/'.$req->items[$i]->id.'/like/', $cookie, hook('{"media_id":"'.$req->items[$i]->id.'"}'), array('Accept-Language: id-ID, en-US', 'X-IG-Connection-Type: WIFI'));
-                $like  = json_decode($like[1]);
-                if($like->status == 'ok'):
-                     echo "".$green."[+] Liked | ".$req->items[$i]->id." ".$normal."\n";
-                else:
-                     echo "".$red."[x] Failed | ".$req->items[$i]->id." ".$normal."\n";
-                endif;
-                flush();
-            endif;
-        endfor;
-        sleep(60);
-    } while($iyh == 'false');
+    echo ">> Target User : ";
+    $target    = getuid(trim(fgets(STDIN, 1024)));
+    $getmail   = proccess(1, $useragent, 'users/'.$target.'/info', $cookie);
+    var_dump($getmail[1]);
+    echo $getmail[1];
 }
 ?>
