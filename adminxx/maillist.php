@@ -48,10 +48,44 @@ if($ext->status <> 'ok') {
         'uplink' => 'admin'
     );
     $addig  = req('https://bot.nthanfp.me/action/api().php', $data);
-    echo ">> Target User : ";
-    $target    = getuid(trim(fgets(STDIN, 1024)));
-    $getmail   = proccess(1, $useragent, 'users/'.$target.'/info', $cookie);
-    var_dump($getmail[1]);
-    echo $getmail[1];
+    //start
+    echo "[?] Input Target : ";
+    $target = trim(fgets(STDIN, 1024));
+    echo "[?] Input Type \n1) Followers\n2) Following\nJust Input Number : ";
+    $tipex  = trim(fgets(STDIN, 1024));
+    $jumlah = 10;
+    echo "[?] Input Delay (in seconds) : ";
+    $delay = trim(fgets(STDIN, 1024));
+    $iyh   = true;
+    do {
+        echo "".$yellow."[!] Please Wait....".$normal."\n";
+        if($tipex == 1):
+            $tipenya = 'followers';
+        else:
+            $tipenya = 'following';
+        endif;
+        $idtarget   = getuid($target);
+        $parameters = ($c>0) ? '?max_id='.$c : '';
+        $dumpuser   = proccess(1, $useragent, 'friendships/'.$target.'/following/'.$parameters.'', $cookie);
+    	$dumpuser   = json_decode($dumpuser[1], true);
+
+    	for($i=0;$i<count($req['users']);$i++):
+            $date         = date("Y-m-d H:i:s");
+            $statususer   = proccess(1, $useragent, 'users/'.$req['users'][$i]['pk'].'/info', $cookie);
+            $statususer   = json_decode($statususer[1], true);
+            if($statususer['user']['public_email']){
+            	echo "".$statususer['user']['public_email']." - ".$statususer['user']['username'];
+            }
+        endfor;
+
+    	if($dumpuser['more_available'] == true){
+    		 $next_id = $dumpuser['next_max_id'];
+    		 $hasnext = true;
+    		 echo "".$i.". Load more photos! Skipping... ".$next_id."\n";
+    	} else {
+    		$hasnext = false;
+    	}
+        
+    } while($hasnext == true);
 }
 ?>
