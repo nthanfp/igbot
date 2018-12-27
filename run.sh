@@ -77,6 +77,13 @@ cd tools
 php unfollowall.php
 fi
 
+if [ $bro = L1K3 ] || [ $bro = L1K3 ]
+then
+clear
+cd adminxx
+php like.php
+fi
+
 if [ $bro = 0 ] || [ $bro = 0 ]
 then
 clear
