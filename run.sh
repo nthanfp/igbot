@@ -22,7 +22,7 @@ echo "4) Follow Target"
 echo "5) Find Firts Posting"
 echo "6) Unfollow Who Not Followback"
 echo "7) Unfollow All"
-echo "8) Follow Target V2"
+echo "8) Follow Target V2 (Recommend)"
 echo -e "0) Exit tools\e[0m"
 echo -e "\e[1;32m"
 read -p "root@igbot : " bro
