@@ -10,9 +10,9 @@ echo banner1();
 echo banner2();
 sleep(1);
 echo $normal;
-echo "[?] Input your instagram username : ";
+echo "".$yellow."[?]".$normal." Input your instagram username : ";
 $userig    = trim(fgets(STDIN, 1024));
-echo "[?] Input your instagram password : ";
+echo "".$yellow."[?]".$normal." Input your instagram password : ";
 $passig    = trim(fgets(STDIN, 1024));
 // kyaa
 $useragent = generate_useragent();

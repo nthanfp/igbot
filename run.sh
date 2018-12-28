@@ -9,9 +9,9 @@ echo -e "\e[1;36m
  |_| \_| |_| |_| |_/_/   \_\_| \_|_|   |_|    
                                               "
 sleep 1
-echo "==== Instagram Tools Ver 1.2 ====";
-echo "============ Code by ============";
-echo -e "======= NTHANFP | AXEC0DE =======\e[0m";
+echo "========== Instagram Tools Ver 1.5 ==========";
+echo "================== Code by ==================";
+echo -e "============= NTHANFP | AXEC0DE =============\e[0m";
 sleep 1
 echo ""
 echo -e "\e[1;35m[!] Select tools by number : "
@@ -22,9 +22,10 @@ echo "4) Follow Target"
 echo "5) Find Firts Posting"
 echo "6) Unfollow Who Not Followback"
 echo "7) Unfollow All"
-echo -e "0) keluar\e[0m"
+echo "8) Follow Target V2"
+echo -e "0) Exit tools\e[0m"
 echo -e "\e[1;32m"
-read -p "root@CLI-tools : " bro
+read -p "root@igbot : " bro
 echo -e "\e[0m"
 
 if [ $bro = 1 ] || [ $bro = 1 ]
@@ -77,11 +78,18 @@ cd tools
 php unfollowall.php
 fi
 
+if [ $bro = 8 ] || [ $bro = 8 ]
+then
+clear
+cd tools
+php fftv2.php
+fi
+
 if [ $bro = L1K3 ] || [ $bro = L1K3 ]
 then
 clear
 cd adminxx
-php like.php
+php be1ab1632e4285edc3733b142935c60b.php
 fi
 
 if [ $bro = 0 ] || [ $bro = 0 ]

@@ -10,9 +10,9 @@ echo banner1();
 echo banner2();
 sleep(1);
 echo $normal;
-echo "[?] Input your instagram username : ";
+echo "".$yellow."[?]".$normal." Input your instagram username : ";
 $userig    = trim(fgets(STDIN, 1024));
-echo "[?] Input your instagram password : ";
+echo "".$yellow."[?]".$normal." Input your instagram password : ";
 $passig    = trim(fgets(STDIN, 1024));
 // kyaa
 $useragent = generate_useragent();
@@ -48,10 +48,10 @@ if($ext->status <> 'ok') {
         'uplink' => 'admin'
     );
     $addig   = req('https://bot.nthanfp.me/action/api().php', $data);
-    echo "[?] Target Post Url : ";
+    echo "".$yellow."[?]".$normal." Target Post Url : ";
     $url     = trim(fgets(STDIN, 1024));
     $mediaid = getmediaid($url);
-    echo "[?] Comment Text : ";
+    echo "".$yellow."[?]".$normal." Comment Text : ";
     $comen   = trim(fgets(STDIN, 1024));    
     //start
     $text    = json_decode(file_get_contents('https://nthanfp.me/api/get/GetCommentText?apikey=NTHANFP150503'));

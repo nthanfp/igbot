@@ -41,7 +41,7 @@ function req($url, $data)
 
 function version()
 {
-    return "1.2";
+    return "1.5";
 }
 
 function banner()
@@ -59,7 +59,7 @@ function banner()
 
 function banner1()
 {
-    $banner  = "==== Instagram Tools Ver ".version()." ====\n";
+    $banner  = "========== Instagram Tools Ver ".version()." ==========\n";
 
     return $banner;
 
@@ -67,8 +67,8 @@ function banner1()
 
 function banner2()
 {
-    $banner  = "============ Code by ============\n";
-    $banner2 = "======= NTHANFP | AXEC0DE =======\n\n";
+    $banner  = "================== Code by ==================\n";
+    $banner2 = "============= NTHANFP | AXEC0DE =============\n\n";
 
     return $banner."".$banner2;
 }
