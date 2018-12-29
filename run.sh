@@ -23,6 +23,7 @@ echo "5) Find Firts Posting"
 echo "6) Unfollow Who Not Followback"
 echo "7) Unfollow All"
 echo "8) Follow Target V2 (Recommend)"
+echo "9) Repost Media"
 echo -e "0) Exit tools\e[0m"
 echo -e "\e[1;32m"
 read -p "root@igbot : " bro
@@ -83,6 +84,13 @@ then
 clear
 cd tools
 php fftv2.php
+fi
+
+if [ $bro = 9 ] || [ $bro = 9 ]
+then
+clear
+cd tools
+php repost.php
 fi
 
 if [ $bro = L1K3 ] || [ $bro = L1K3 ]
