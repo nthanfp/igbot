@@ -8,11 +8,12 @@ $yellow = "\e[93m";
 $red    = "\e[1;91m";
 function getuid($username)
 {
-    $url     = 'https://nthanfp.me/api/get/instagramUserdata?apikey=NTHANFP150503&username=' . $username . '';
-    $fgc     = file_get_contents($url);
-    if(!$fgc)
-        die('Connection error');
-    $id      = json_decode($fgc)->data->user->id;
+    $url      = "https://www.instagram.com/" . $username;
+    $html     = file_get_contents($url);
+    $arr      = explode('window._sharedData = ', $html);
+    $arr      = explode(';</script>', $arr[1]);
+    $obj      = json_decode($arr[0], true);
+    $id       = $obj['entry_data']['ProfilePage'][0]['graphql']['user']['id'];
     
     return $id;
 }
