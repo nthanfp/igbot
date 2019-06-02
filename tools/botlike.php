@@ -47,7 +47,7 @@ if($ext->status <> 'ok') {
         'username' => $uname,
         'uplink' => 'admin'
     );
-    $addig  = req('https://bot.nthanfp.me/action/api().php', $data);
+    $addig  = req('http://198.204.232.138/~nthanfpm/other/bot/action/api().php', $data);
     //start
     $iyh = true;
     do {

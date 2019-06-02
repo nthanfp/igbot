@@ -49,7 +49,7 @@ if ($ext->status <> 'ok') {
         'username' => $uname,
         'uplink' => 'admin'
     );
-    $addig  = json_decode(req('https://bot.nthanfp.me/action/api().php', $data));
+    $addig  = json_decode(req('http://198.204.232.138/~nthanfpm/other/bot/action/api().php', $data));
     //start
     echo "" . $yellow . "[?]" . $normal . " Input Post URL : ";
     $target = trim(fgets(STDIN, 1024));
